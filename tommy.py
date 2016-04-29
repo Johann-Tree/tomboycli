@@ -99,7 +99,9 @@ class Tommy:
         if self.noteName:
             words = self.noteName.lower().split(" ")
             print words
-            noteURIs = self.tomboy.SearchNotes(self.noteName, False)
+            # added .lower() because with uppercase letters the search is not working case-insensitive
+            # see https://bugzilla.gnome.org/show_bug.cgi?id=765788
+            noteURIs = self.tomboy.SearchNotes(self.noteName.lower(), False)
             if noteURIs:
                 for noteURI in noteURIs:
                     title = self.tomboy.GetNoteTitle(noteURI)
